@@ -21,6 +21,7 @@ class Cetmodules(CMakePackage):
 
     version("develop", branch="develop", get_full_repo=True)
 
+    version("3.27.02", sha256="b6d902b283ef1d7a7ad46da1356826427a1957228ffe8cb7d7fb063ce7ca6d30")
     version("3.27.01", sha256="5e64b874eb4953ad62c0de4ae8c279f0638e4a13b8c9515e50890c9952a73ee9")
     version("3.27.00", sha256="6926fd8df351713bce0382ab57760d398437687e24da40bbd1306d6b17d86661")
     version("3.26.00", sha256="0acf1a916cb378dba819dd954de1e5279db5053658827844886006466cec3dc8")
@@ -76,15 +77,15 @@ class Cetmodules(CMakePackage):
         spec = self.spec
         define = self.define
         options = ["--preset", "default"]
-        if not any(
+        if any(
             [
                 spec.variants[doc_opt].value
                 for doc_opt in ("docs", "versioned-docs")
                 if doc_opt in spec.variants
             ]
         ):
-            options.append(define("BUILD_DOCS", False))
-        elif spec.variants["versioned-docs"].value:
+            options.append(define("BUILD_DOCS", True))
+        if spec.variants["versioned-docs"].value:
             options += [
                 define(
                     f"{self.name}_SPHINX_DOC_PUBLISH_VERSION_BRANCH", spec.version
