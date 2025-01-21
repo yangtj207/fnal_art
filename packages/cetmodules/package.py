@@ -76,7 +76,9 @@ class Cetmodules(CMakePackage):
     def cmake_args(self):
         spec = self.spec
         define = self.define
-        options = ["--preset", "default"]
+        options = []
+        if spec.satisfies("@:3"):
+            options.extend(["--preset", "default"])
         if any(
             [
                 spec.variants[doc_opt].value
