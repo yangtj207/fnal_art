@@ -28,6 +28,8 @@ class Jsonnet(Package):
         description="Use the specified C++ standard when building.",
     )
 
+    depends_on("gmake")
+
     def patch(self):
         with when("@:0.19.1 %gcc@13:"):
             filter_file(

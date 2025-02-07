@@ -23,6 +23,7 @@ class H5cpp(Package):
     depends_on("cmake@3.10:", type="build")
     depends_on("hdf5") # for examples(?)
     depends_on("fmt")
+    depends_on("gmake")
 
     def url_for_version(self, version):
         return "https://github.com/steven-varga/h5cpp/archive/refs/tags/v{0}.tar.gz".format(
