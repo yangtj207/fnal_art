@@ -8,7 +8,7 @@ import os
 from spack.package import *
 
 
-class Jsonnet(Package):
+class Jsonnet(MakefilePackage):
     "A data templating language looking like JSON that produces JSON."
 
     homepage = "https://jsonnet.org"
@@ -27,8 +27,6 @@ class Jsonnet(Package):
         multi=False,
         description="Use the specified C++ standard when building.",
     )
-
-    depends_on("gmake")
 
     def patch(self):
         with when("@:0.19.1 %gcc@13:"):

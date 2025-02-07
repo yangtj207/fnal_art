@@ -6,11 +6,11 @@
 from spack.package import *
 
 
-class Marley(Package):
+class Marley(MakefilePackage):
     """A Monte Carlo event generator for tens-of-MeV neutrino-nucleus
     interactions in liquid argon"""
 
-    homepage = "httpd://github.com/sjgardiner/marley"
+    homepage = "https://github.com/MARLEY-MC/marley"
     url = "https://github.com/MARLEY-MC/marley/archive/v1.2.1.tar.gz"
 
     version("1.2.1", sha256="75e8e4acbbcf7ad9de0ef629ac9e8764ebf90fda2242ff5e6e590e77f9df6972")
@@ -30,7 +30,6 @@ class Marley(Package):
 
     depends_on("root")
     depends_on("gsl")
-    depends_on("gmake")
 
     patch("marley-1.0.0.patch", when="@1.0.0")
     patch("marley-1.1.0.patch", when="@1.1.0")
